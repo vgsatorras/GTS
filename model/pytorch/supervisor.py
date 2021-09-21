@@ -381,9 +381,8 @@ class GTSSupervisor:
                         'Val loss decrease from {:.4f} to {:.4f}, '
                         'saving to {}'.format(min_val_loss, val_loss, model_file_name))
                 min_val_loss = val_loss
-
-                # if val is smaller, then test
-                self.evaluate(label, dataset='test', batches_seen=batches_seen, gumbel_soft=gumbel_soft)
+                print("New best crossvalidated test loss")
+                test_loss = self.evaluate(label, dataset='test', batches_seen=batches_seen, gumbel_soft=gumbel_soft)
 
             elif val_loss >= min_val_loss:
                 wait += 1
